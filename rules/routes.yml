@@ -1,0 +1,47 @@
+rules:
+  - id: express-routes
+    languages:
+      - javascript
+      - typescript
+    message: Express route found ($P)
+    severity: INFO
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              $APP_PARM = require('express');
+              ...
+          - pattern-inside: |
+              import $APP_PARM from 'express'
+              ...
+          - pattern-inside: |
+              import {..., $APP_PARM, ...} from 'express'
+              ...
+          - pattern-inside: |
+              import * as $APP_PARM from 'express'
+              ...
+      - pattern-either:
+          - patterns:
+              - pattern: $OBJ.$METH($P, ...)
+
+              - metavariable-regex:
+                  metavariable: $OBJ
+                  regex: ^(app|route|router)$
+              - metavariable-regex:
+                  metavariable: $METH
+                  regex: ^(get|post|put|patch|delete|head)$
+              - metavariable-comparison:
+                  comparison: re.match("^/.*$", $P)
+          - patterns:
+              - pattern: this.$OBJ.$METH($P, ...)
+
+              - metavariable-regex:
+                  metavariable: $OBJ
+                  regex: ^(app|route|router)$
+              - metavariable-regex:
+                  metavariable: $METH
+                  regex: ^(get|post|put|patch|delete|head)$
+              - metavariable-comparison:
+                  comparison: re.match("^/.*$", $P)
+    metadata:
+      category: routing
+
