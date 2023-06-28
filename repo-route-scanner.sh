@@ -5,6 +5,12 @@
 REPO=$1
 OUTPUT=$2
 
+# Get the directory path of the script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Specify the absolute path of the rules file
+RULES_FILE="${SCRIPT_DIR}/rules/routes.yml"
+
 # If REPO or OUTPUT is not set, exit and display usage
 if [ -z "$REPO" ] || [ -z "$OUTPUT" ]; then
   echo "Usage: repo-route-scanner.sh <repo> <output>"
@@ -25,4 +31,4 @@ if [ ! -d "$REPO" ]; then
 fi
 
 # Run Semgrep using the routes ruleset
-semgrep -f rules/routes.yml --json $REPO > $OUTPUT
+semgrep -f $RULES_FILE --json $REPO > $OUTPUT
