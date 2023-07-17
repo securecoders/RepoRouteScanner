@@ -1,0 +1,20 @@
+rules:
+  - id: aws-s3-upload
+    languages: [javascript]
+    message: AWS S3 data upload found
+    severity: INFO
+    patterns:
+      - pattern: new AWS.S3().upload(...)
+    metadata:
+      category: swift_storage
+      cwe: "CWE-922: Insecure Storage of Sensitive Information"
+
+  - id: azure-blob-upload
+    languages: [javascript]
+    message: Azure Blob data upload found
+    severity: INFO
+    patterns:
+      - pattern: blobService.createBlockBlobFromLocalFile(...)
+    metadata:
+      category: swift_storage
+      cwe: "CWE-922: Insecure Storage of Sensitive Information"

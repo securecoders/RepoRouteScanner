@@ -1,0 +1,70 @@
+rules:
+  - id: mongodb-connection
+    languages: [javascript]
+    message: MongoDB connection established
+    severity: INFO
+    patterns:
+      - pattern: MongoClient.connect(...)
+    metadata:
+      category: database_connection
+      cwe: "CWE-200: Information Exposure"
+
+  - id: mysql-connection
+    languages: [javascript]
+    message: MySQL connection established
+    severity: INFO
+    patterns:
+      - pattern: mysql.createConnection(...)
+    metadata:
+      category: database_connection
+      cwe: "CWE-200: Information Exposure"
+
+  - id: pg-connection
+    languages: [javascript]
+    message: PostgreSQL connection established
+    severity: INFO
+    patterns:
+      - pattern: new Client(...)
+    metadata:
+      category: database_connection
+      cwe: "CWE-200: Information Exposure"
+
+  - id: sequelize-connection
+    languages: [javascript]
+    message: Sequelize connection established
+    severity: INFO
+    patterns:
+      - pattern: new Sequelize(...)
+    metadata:
+      category: database_connection
+      cwe: "CWE-200: Information Exposure"
+
+  - id: mongoose-connection
+    languages: [javascript]
+    message: Mongoose connection established
+    severity: INFO
+    patterns:
+      - pattern: mongoose.connect(...)
+    metadata:
+      category: database_connection
+      cwe: "CWE-200: Information Exposure"
+
+  - id: redis-connection
+    languages: [javascript]
+    message: Redis connection established
+    severity: INFO
+    patterns:
+      - pattern: redis.createClient(...)
+    metadata:
+      category: database
+      cwe: "CWE-200: Information Exposure"
+
+  - id: memcached-connection
+    languages: [javascript]
+    message: Memcached connection established
+    severity: INFO
+    patterns:
+      - pattern: new Memcached(...)
+    metadata:
+      category: database
+      cwe: "CWE-200: Information Exposure"
