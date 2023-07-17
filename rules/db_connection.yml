@@ -56,7 +56,7 @@ rules:
     patterns:
       - pattern: redis.createClient(...)
     metadata:
-      category: database
+      category: database_connection
       cwe: "CWE-200: Information Exposure"
 
   - id: memcached-connection
@@ -66,5 +66,5 @@ rules:
     patterns:
       - pattern: new Memcached(...)
     metadata:
-      category: database
+      category: database_connection
       cwe: "CWE-200: Information Exposure"
