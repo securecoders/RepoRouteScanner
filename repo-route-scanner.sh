@@ -13,6 +13,7 @@ ROUTES_RULES_FILE="${SCRIPT_DIR}/rules/routes.yml"
 DB_CONNECTION_RULES_FILE="${SCRIPT_DIR}/rules/db_connection.yml"
 SWIFT_RULES_FILE="${SCRIPT_DIR}/rules/swift_storage.yml"
 AUTH_MIDDLEWARE_RULES_FILE="${SCRIPT_DIR}/rules/auth_middleware.yml"
+AUTHENTICATION_MODULE_FILE="${SCRIPT_DIR}/rules/authentication_module.yml"
 
 # If REPO or OUTPUT is not set, exit and display usage
 if [ -z "$REPO" ] || [ -z "$OUTPUT" ]; then
@@ -39,4 +40,5 @@ semgrep \
   -f $DB_CONNECTION_RULES_FILE \
   -f $SWIFT_RULES_FILE   \
   -f $AUTH_MIDDLEWARE_RULES_FILE  \
+  -f $AUTHENTICATION_MODULE_FILE  \
   --json $REPO > $OUTPUT
