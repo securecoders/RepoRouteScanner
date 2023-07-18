@@ -1,0 +1,17 @@
+rules:
+- id: passport-module-loaded
+  patterns:
+    - pattern-either:
+      - pattern: $APP_PARM = require('$M');
+      - pattern: import $APP_PARM from '$M'
+      - pattern: import {...} from '$M'
+      - pattern: import * as $APP_PARM from '$M'
+    - metavariable-regex:
+        metavariable: $M
+        regex: ^passport-.*$
+  message: Authentication or authorization middleware found "$M"
+  languages: [js, ts]
+  severity: INFO
+  metadata:
+      category: authentication_module
+      cwe: "CWE-287: Improper Authentication"
