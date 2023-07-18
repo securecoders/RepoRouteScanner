@@ -1,0 +1,25 @@
+rules:
+  - id: authentication-middleware
+    languages:
+      - javascript
+      - typescript
+    message: Authentication middleware found ($F)
+    severity: INFO
+    patterns:
+      - pattern-either:
+          - pattern: $OBJ.$F = (req, res, ...) => {...}
+          - pattern: $OBJ.$F = (request, response, ...) => {...}
+          - pattern: $F = (req, res, ...) => {...}
+          - pattern: $F = (request, response, ...) => {...}
+
+      - metavariable-pattern:
+            metavariable: $F
+            patterns:
+              - metavariable-regex:
+                 metavariable: $F
+                 regex: ^.*(auth|Auth).*$
+
+
+    metadata:
+      category: authentication_middleware
+      cwe: "CWE-287: Improper Authentication"

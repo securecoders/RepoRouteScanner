@@ -12,6 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROUTES_RULES_FILE="${SCRIPT_DIR}/rules/routes.yml"
 DB_CONNECTION_RULES_FILE="${SCRIPT_DIR}/rules/db_connection.yml"
 SWIFT_RULES_FILE="${SCRIPT_DIR}/rules/swift_storage.yml"
+AUTH_MIDDLEWARE_RULES_FILE="${SCRIPT_DIR}/rules/auth_middleware.yml"
 
 # If REPO or OUTPUT is not set, exit and display usage
 if [ -z "$REPO" ] || [ -z "$OUTPUT" ]; then
@@ -33,4 +34,9 @@ if [ ! -d "$REPO" ]; then
 fi
 
 # Run Semgrep using the routes ruleset
-semgrep -f $ROUTES_RULES_FILE -f $DB_CONNECTION_RULES_FILE -f $SWIFT_RULES_FILE   --json $REPO > $OUTPUT
+semgrep \
+  -f $ROUTES_RULES_FILE \
+  -f $DB_CONNECTION_RULES_FILE \
+  -f $SWIFT_RULES_FILE   \
+  -f $AUTH_MIDDLEWARE_RULES_FILE  \
+  --json $REPO > $OUTPUT
