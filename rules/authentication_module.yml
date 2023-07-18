@@ -9,7 +9,7 @@ rules:
     - metavariable-regex:
         metavariable: $M
         regex: ^passport-.*$
-  message: Authentication or authorization middleware found "$M"
+  message: Authentication module found "$M"
   languages: [js, ts]
   severity: INFO
   metadata:
